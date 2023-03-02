@@ -12,6 +12,7 @@ from nonebot.adapters.onebot.v11.event import Sender
 from ..common.dataModel import *
 from ..common.utils import *
 
+from typing import List, Optional, Dict, Union
 
 class UserData(BaseModel):
     sender: Sender
@@ -20,14 +21,14 @@ class UserData(BaseModel):
     last_time: float = time.time()
     is_waiting: bool = False
     conversation_count: int = 0
-    history: list[Conversation] = []
+    history: List[Conversation] = []
 
     class Config:
         arbitrary_types_allowed = True
 
 
 def getUserDataSafe(
-    user_data_dict: dict[int, UserData], event: MessageEvent
+    user_data_dict: Dict[int, UserData], event: MessageEvent
 ) -> UserData:
     """获取该用户的user_data，如果没有则创建一个并返回"""
     if event.sender.user_id in user_data_dict:
@@ -39,12 +40,12 @@ def getUserDataSafe(
     return current_user_data
 
 
-def replyOut(message_id: int, message_segment: MessageSegment | str) -> MessageSegment:
+def replyOut(message_id: int, message_segment: Union[MessageSegment, str]) -> MessageSegment:
     """返回一个回复消息"""
     return MessageSegment.reply(message_id) + message_segment
 
 
-def historyOut(bot: Bot, user_data: UserData) -> list[MessageSegment]:
+def historyOut(bot: Bot, user_data: UserData) -> List[MessageSegment]:
     """将历史记录输出到消息列表并返回"""
     messages = []
     for conversation in user_data.history:

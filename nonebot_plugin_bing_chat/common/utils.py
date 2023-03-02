@@ -9,17 +9,27 @@ from .dataModel import Config
 
 plugin_config = Config.parse_obj(get_driver().config)
 
+print(plugin_config.bingchat_command_chat[0])
+print(plugin_config.bingchat_command_chat[1:])
+print(plugin_config.bingchat_command_new_chat[0])
+print(plugin_config.bingchat_command_new_chat[1:])
+print(plugin_config.bingchat_command_history_chat[0])
+print(plugin_config.bingchat_command_history_chat[1:])
+
 command_chat = on_command(
     cmd=plugin_config.bingchat_command_chat[0],
     aliases=set(plugin_config.bingchat_command_chat[1:]),
+    block=True
 )
 command_new_chat = on_command(
     cmd=plugin_config.bingchat_command_new_chat[0],
     aliases=set(plugin_config.bingchat_command_new_chat[1:]),
+    block=True
 )
 command_history_chat = on_command(
     cmd=plugin_config.bingchat_command_history_chat[0],
     aliases=set(plugin_config.bingchat_command_history_chat[1:]),
+    block=True
 )
 
 

@@ -22,8 +22,11 @@ from ..common.exceptions import (
 from .check import CheckIfInList, CheckIfUserIsWaitingForResponse
 from .utils import *
 
+from typing import Dict
+import os
 
-user_data_dict: dict[int, UserData] = dict()
+user_data_dict: Dict[int, UserData] = {}
+
 
 
 @command_chat.handle()
@@ -159,3 +162,18 @@ async def bing_chat_command_history_chat(
         await bot.send_group_forward_msg(group_id=event.group_id, messages=msg)
     if isinstance(event, PrivateMessageEvent):
         await bot.send_private_forward_msg(user_id=event.user_id, messages=msg)
+
+
+def init_cookie():
+    directory = "./data/BingChat"
+    if not os.path.exists(directory):
+        os.mkdir(directory)
+
+    file_path = os.path.join(directory, "cookies.json")
+
+    if not os.path.exists(file_path):
+        with open(file_path, 'w') as file:
+            pass  # 空文件
+        file.close()
+
+init_cookie()
