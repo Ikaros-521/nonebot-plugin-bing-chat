@@ -44,6 +44,18 @@ QQ群：366731501
 
 ## 💿 安装与更新
 
+### py3.8+版安装方法
+
+<details>
+<summary> <b> 克隆项目到bot插件路径 </b></summary>
+在 nonebot2 项目的插件目录下（一般为 bot名/src/plugins ）, 打开命令行, 输入以下命令（注意：需要先安装<a href="https://git-scm.com/" target="_blank">git</a>)客户端才能使用）
+
+    git clone https://github.com/Ikaros-521/nonebot-plugin-bing-chat.git
+
+</details>
+
+### py3.10+版本安装官方版方法
+
 <details>
 <summary> <b> 使用 nb-cli 安装与更新 </b> </summary>
 在 nonebot2 项目的根目录下打开命令行, 输入以下指令即可安装
